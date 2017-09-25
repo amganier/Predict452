@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup  # DOM html manipulation
 # -----------------------------------------------
 # demo using the requests and lxml packages
 # -----------------------------------------------
-# test requests package on the home page for ToutBay
+# Requests package on an email sent 23Aug17 archived on the Northwestern Alumni site 
 web_page = requests.get('http://www.alumni.northwestern.edu/s/1479/02-naa/16/interior.aspx?sid=1479&gid=2&pgid=25626&cid=42868&ecid=42868&crid=0&calpgid=25618&calcid=42867', auth=('user', 'pass'))
 # obtain the entire HTML text for the page of interest
 
@@ -21,19 +21,9 @@ web_page.status_code
 # show the encoding of the page... should be utf8
 web_page.encoding
 
-# ------- Attempt One
-# If I try to limit scope here, I suffer: AttributeError: 'Response' object has no attribute 'xpath' 
-# email_body = ''.join(web_page.xpath('//div[@id="ContentMiddle"]//text()'))
-# print(email_body)
-
 # show the text including all of the HTML tags... lots of tags
 web_page_text = web_page.text
 print(web_page_text)
-
-# ------- Attempt Two
-# If I try to limit scope here, I suffer: AttributeError: 'str' object has no attribute 'xpath' 
-# email_body = ''.join(web_page_text.xpath('//div[@id="ContentMiddle"]//text()'))
-# print(email_body)
 
 # parse the web text using html functions from lxml package
 # store the text with HTML tree structure
