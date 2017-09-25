@@ -12,8 +12,8 @@ from bs4 import BeautifulSoup  # DOM html manipulation
 # -----------------------------------------------
 # demo using the requests and lxml packages
 # -----------------------------------------------
-# test requests package on an email archive instance of Northwestern's Alumni Site
-web_page = requests.get('http://www.alumni.northwestern.edu/s/1479/02-naa/16/interior.aspx?sid=1479&gid=2&pgid=25618', auth=('user', 'pass'))
+# test requests package on the home page for ToutBay
+web_page = requests.get('http://www.toutbay.com/', auth=('user', 'pass'))
 # obtain the entire HTML text for the page of interest
 
 # show the status of the page... should be 200 (no error)
