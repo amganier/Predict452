@@ -12,14 +12,26 @@ from bs4 import BeautifulSoup  # DOM html manipulation
 # -----------------------------------------------
 # demo using the requests and lxml packages
 # -----------------------------------------------
-# Requests package on an email sent 23Aug17 archived on the Northwestern Alumni site 
-web_page = requests.get('http://www.alumni.northwestern.edu/s/1479/02-naa/16/interior.aspx?sid=1479&gid=2&pgid=25626&cid=42868&ecid=42868&crid=0&calpgid=25618&calcid=42867', auth=('user', 'pass'))
-# obtain the entire HTML text for the page of interest
 
-# show the status of the page... should be 200 (no error)
-web_page.status_code
-# show the encoding of the page... should be utf8
-web_page.encoding
+# Creating a list with the hope of successfully looping through it later 
+# public_emails_list = [
+# "http://www.alumni.northwestern.edu/s/1479/02-naa/16/interior.aspx?sid=1479&gid=2&pgid=25626&cid=42868&ecid=42868&crid=0&calpgid=25618&calcid=42867", 
+# "http://www.alumni.northwestern.edu/s/1479/02-naa/16/interior.aspx?sid=1479&gid=2&pgid=25916&cid=43308&ecid=43308&crid=0&calpgid=25618&calcid=42867"
+# ]
+
+# Learning How to Build a loop
+# Citation: Core Python Programming, Second Edition 
+#for eachName in public_emails_list: print(eachName)
+
+    
+# Learning how to make a dictionary
+# Citation: Automate the Boring Stuff with Python
+my_emails = {'PurpleLine_20092017':'http://www.alumni.northwestern.edu/?sid=1479&gid=2&pgid=25916&cid=43308&ecid=43308&crid=0&calpgid=25618&calcid=42867','PurpleLine_28082017':'http://www.alumni.northwestern.edu/?sid=1479&gid=2&pgid=25626&cid=42868&ecid=42868&crid=0&calpgid=25618&calcid=42867'}
+
+
+# Passing item as variable into sequence by using a dictionary
+web_page = requests.get(my_emails['PurpleLine_20092017'], auth=('user', 'pass'))
+# obtain the entire HTML text for the page of interest
 
 # show the text including all of the HTML tags... lots of tags
 web_page_text = web_page.text
