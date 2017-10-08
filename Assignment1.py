@@ -8,16 +8,17 @@ from __future__ import division, print_function
 import requests  # functions for interacting with web pages
 from lxml import html  # functions for parsing HTML
 from bs4 import BeautifulSoup  # DOM html manipulation
+from array import array # Need ability to create array
 
 # -----------------------------------------------
 # demo using the requests and lxml packages
 # -----------------------------------------------
 
 # Creating a list with the hope of successfully looping through it later 
-emails_list = [
- "http://www.alumni.northwestern.edu/s/1479/02-naa/16/interior.aspx?sid=1479&gid=2&pgid=25626&cid=42868&ecid=42868&crid=0&calpgid=25618&calcid=42867", 
- "http://www.alumni.northwestern.edu/s/1479/02-naa/16/interior.aspx?sid=1479&gid=2&pgid=25916&cid=43308&ecid=43308&crid=0&calpgid=25618&calcid=42867"
- ]
+# emails_list = [
+ # "http://www.alumni.northwestern.edu/s/1479/02-naa/16/interior.aspx?sid=1479&gid=2&pgid=25626&cid=42868&ecid=42868&crid=0&calpgid=25618&calcid=42867", 
+ # "http://www.alumni.northwestern.edu/s/1479/02-naa/16/interior.aspx?sid=1479&gid=2&pgid=25916&cid=43308&ecid=43308&crid=0&calpgid=25618&calcid=42867"
+# ]
  
 # Learning How to Build a loop
 # Citation: Core Python Programming, Second Edition 
@@ -32,52 +33,45 @@ my_emails = {'PurpleLine_20170920':'http://www.alumni.northwestern.edu/?sid=1479
 # put those into an array in the order I need to call them
 # map once on that array and give it the argument of the data set
 # argument is the data set on which I want the function array to run
-
-# should I be using epoch time 1505883600000 ?
-
-# helped by https://stackoverflow.com/questions/36853651/python-requests-get-iterating-url-in-a-loop
-
-def get_data(url):
-    response = requests.get(url)
-    if response.status_code == 200:
-        return data
-    else:
-        print(response.text)
-        print(response.status_code)
-
-# help on list comprehensions from http://www.secnetix.de/olli/Python/list_comprehensions.hawk and Python Essential Reference, Fourth Edition
-
-my_emails = {'PurpleLine_20170920':'http://www.alumni.northwestern.edu/?sid=1479&gid=2&pgid=25916&cid=43308&ecid=43308&crid=0&calpgid=25618&calcid=42867','PurpleLine_20170828':'http://www.alumni.northwestern.edu/?sid=1479&gid=2&pgid=25626&cid=42868&ecid=42868&crid=0&calpgid=25618&calcid=42867'}
         
+#fail
+# for i in emails_list:
+#    web_page = map(requests.get(i), emails_list)
 
-magic_set = map (requests.get(), my_emails)
-
+PurpleLine_20170920 = requests.get(my_emails['PurpleLine_20170920'], auth=('user', 'pass'))
     
-PurpleLine_20092017 = requests.get(requests.get['PurpleLine_20170920'], auth=('user', 'pass'))
+# show the status of the page... should be 200 (no error)
+PurpleLine_20170920.status_code
+# show the encoding of the page... should be utf8
+PurpleLine_20170920.encoding
 
-emails = map requests.get(my_emails['my_emails'])
-
+# sequence of lambdas
+# Do I need to swap with sequence of functions instead of lambdas?
+r = PurpleLine_20170920
 t = lambda r: 'r'.text
 h = lambda t: html.fromstring('t')
 b = lambda h: ''.join('h'.xpath('//div[@id="ContentMiddle"]//text()'))
 
 # reference: http://pythoncentral.io/the-difference-between-a-list-and-an-array/
-process = array ([r,t,h,b])
 
-name = map (process, list_of_one)
+# Attempt 1 results in error: TypeError: array() argument 1 must be a unicode character, not list
+process1 = array(['t','h','b'])#
+name = map(process1, PurpleLine_20170920)
 
+# Attempt 2 results in error: TypeError: array() argument 1 must be a unicode character, not list
+process2 = array(['t','h','b'])#
+name = map(process2, PurpleLine_20170920)
 
+# Attempt 3 results in error:TypeError: string indices must be integers
+process3 = array('u'[t,h,b])
+name = map(process2, PurpleLine_20170920)
 
-web_page_text = web_page.text
-web_page_html = html.fromstring(web_page_text)
-''.join(web_page_html.xpath('//div[@id="ContentMiddle"]//text()'))
+# Attempt 4 results in error:TypeError: string indices must be integers
+process4 = array('u'['t','h','b'])
+name = map(process3, PurpleLine_20170920)
 
+print(name)
 
-
-# show the resulting text string object
-print(email_body)
-print(len(email_body)) # has a few all-blank strings
-print(len(email_body))   # a list of character strings
 
 # -----------------------------------------------------------
 # demo of parsing HTML with beautiful soup instead of lxml
