@@ -9,6 +9,7 @@ import requests  # functions for interacting with web pages
 from lxml import html  # functions for parsing HTML
 from bs4 import BeautifulSoup  # DOM html manipulation
 from array import array # Need ability to create array
+from functools import reduce # Need reduce
 
 # -----------------------------------------------
 # demo using the requests and lxml packages
@@ -31,20 +32,23 @@ PurpleLine_20170920.status_code
 # show the encoding of the page... should be utf8
 PurpleLine_20170920.encoding
 
+
 # sequence of lambdas
-# Do I need to swap with sequence of functions instead of lambdas?
+# Do I need to swap with sequence of functions instead of lambdas (maybe but not a "need")
 # Removed '' from lambda variables to avoid single character strings with help from KO
 r = PurpleLine_20170920
 t = lambda r: r.text
 h = lambda t: html.fromstring(t)
 b = lambda h: ''.join(h.xpath('//div[@id="ContentMiddle"]//text()'))
 
-# reference: http://pythoncentral.io/the-difference-between-a-list-and-an-array/
-# Removed '' and [] from lambda variables to avoid making strings with help from KO
-process = array(t,h,b)#
-name = map(process, PurpleLine_20170920)
+# from CJG: map runs lambdas in succession but not using the output of previous to feed input of next. Instead try reduce
+# Reference: https://stackoverflow.com/questions/4021731/python-function-list-chained-executing
+process = [t,h,b]
+name = reduce(lambda x, y: y(x), process, PurpleLine_20170920)
+
 
 print(name)
+
 
 
 # -----------------------------------------------------------
