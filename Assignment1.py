@@ -14,16 +14,6 @@ from array import array # Need ability to create array
 # demo using the requests and lxml packages
 # -----------------------------------------------
 
-# Creating a list with the hope of successfully looping through it later 
-# emails_list = [
- # "http://www.alumni.northwestern.edu/s/1479/02-naa/16/interior.aspx?sid=1479&gid=2&pgid=25626&cid=42868&ecid=42868&crid=0&calpgid=25618&calcid=42867", 
- # "http://www.alumni.northwestern.edu/s/1479/02-naa/16/interior.aspx?sid=1479&gid=2&pgid=25916&cid=43308&ecid=43308&crid=0&calpgid=25618&calcid=42867"
-# ]
- 
-# Learning How to Build a loop
-# Citation: Core Python Programming, Second Edition 
-# for eachName in public_emails_list: print(eachName)
-
 # Learning how to make a dictionary
 # Citation: Automate the Boring Stuff with Python
 my_emails = {'PurpleLine_20170920':'http://www.alumni.northwestern.edu/?sid=1479&gid=2&pgid=25916&cid=43308&ecid=43308&crid=0&calpgid=25618&calcid=42867','PurpleLine_20170828':'http://www.alumni.northwestern.edu/?sid=1479&gid=2&pgid=25626&cid=42868&ecid=42868&crid=0&calpgid=25618&calcid=42867'}
@@ -33,10 +23,6 @@ my_emails = {'PurpleLine_20170920':'http://www.alumni.northwestern.edu/?sid=1479
 # put those into an array in the order I need to call them
 # map once on that array and give it the argument of the data set
 # argument is the data set on which I want the function array to run
-        
-#fail
-# for i in emails_list:
-#    web_page = map(requests.get(i), emails_list)
 
 PurpleLine_20170920 = requests.get(my_emails['PurpleLine_20170920'], auth=('user', 'pass'))
     
@@ -47,28 +33,16 @@ PurpleLine_20170920.encoding
 
 # sequence of lambdas
 # Do I need to swap with sequence of functions instead of lambdas?
+# Removed '' from lambda variables to avoid single character strings with help from KO
 r = PurpleLine_20170920
-t = lambda r: 'r'.text
-h = lambda t: html.fromstring('t')
-b = lambda h: ''.join('h'.xpath('//div[@id="ContentMiddle"]//text()'))
+t = lambda r: r.text
+h = lambda t: html.fromstring(t)
+b = lambda h: ''.join(h.xpath('//div[@id="ContentMiddle"]//text()'))
 
 # reference: http://pythoncentral.io/the-difference-between-a-list-and-an-array/
-
-# Attempt 1 results in error: TypeError: array() argument 1 must be a unicode character, not list
-process1 = array(['t','h','b'])#
-name = map(process1, PurpleLine_20170920)
-
-# Attempt 2 results in error: TypeError: array() argument 1 must be a unicode character, not list
-process2 = array(['t','h','b'])#
-name = map(process2, PurpleLine_20170920)
-
-# Attempt 3 results in error:TypeError: string indices must be integers
-process3 = array('u'[t,h,b])
-name = map(process2, PurpleLine_20170920)
-
-# Attempt 4 results in error:TypeError: string indices must be integers
-process4 = array('u'['t','h','b'])
-name = map(process3, PurpleLine_20170920)
+# Removed '' and [] from lambda variables to avoid making strings with help from KO
+process = array(t,h,b)#
+name = map(process, PurpleLine_20170920)
 
 print(name)
 
