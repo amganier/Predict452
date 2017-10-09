@@ -8,55 +8,48 @@ from __future__ import division, print_function
 import requests  # functions for interacting with web pages
 from lxml import html  # functions for parsing HTML
 from bs4 import BeautifulSoup  # DOM html manipulation
-from array import array # Need ability to create array
-from functools import reduce # Need reduce
+from functools import reduce # Need reduce to combine lambdas
 
 # -----------------------------------------------
-# demo using the requests and lxml packages
+# built from demo using the requests and lxml packages
 # -----------------------------------------------
 
-# Learning how to make a dictionary
+# Building a dictionary 
 # Citation: Automate the Boring Stuff with Python
 my_emails = {'PurpleLine_20170920':'http://www.alumni.northwestern.edu/?sid=1479&gid=2&pgid=25916&cid=43308&ecid=43308&crid=0&calpgid=25618&calcid=42867','PurpleLine_20170828':'http://www.alumni.northwestern.edu/?sid=1479&gid=2&pgid=25626&cid=42868&ecid=42868&crid=0&calpgid=25618&calcid=42867'}
 
-# Insight from conversation with CJG
-# write lambdas that transform data set called on
-# put those into an array in the order I need to call them
-# map once on that array and give it the argument of the data set
-# argument is the data set on which I want the function array to run
-
-PurpleLine_20170920 = requests.get(my_emails['PurpleLine_20170920'], auth=('user', 'pass'))
-    
-# show the status of the page... should be 200 (no error)
-PurpleLine_20170920.status_code
-# show the encoding of the page... should be utf8
-PurpleLine_20170920.encoding
-
-
-# sequence of lambdas
-# Do I need to swap with sequence of functions instead of lambdas (maybe but not a "need")
-# Removed '' from lambda variables to avoid single character strings with help from KO
-r = PurpleLine_20170920
+# Using first key from dictionary in sample request statement. I hope to automate this later.
+PurpleLine_20170920_data = requests.get(my_emails['PurpleLine_20170920'], auth=('user', 'pass'))
+ 
+# Writing sequence of lambdas that transform item from dictionary
+# Citation: https://www.python-course.eu/lambda.php
+r = PurpleLine_20170920_data
 t = lambda r: r.text
 h = lambda t: html.fromstring(t)
+ # Isolating desired content from rest of web page using div tag with id of "ContentMiddle"
+ # Citation: https://stackoverflow.com/questions/35163864/extract-text-from-html-div-using-python-and-lxml
 b = lambda h: ''.join(h.xpath('//div[@id="ContentMiddle"]//text()'))
 
-# from CJG: map runs lambdas in succession but not using the output of previous to feed input of next. Instead try reduce
-# Reference: https://stackoverflow.com/questions/4021731/python-function-list-chained-executing
+# Combining lambda functions into an array in the order I need to call them
 process = [t,h,b]
-name = reduce(lambda x, y: y(x), process, PurpleLine_20170920)
 
+# Help from CJG: map runs lambdas in succession but not using the output of previous to feed input of next. Instead try reduce 
+# Citation: https://stackoverflow.com/questions/4021731/python-function-list-chained-executing
+result = reduce(lambda x, y: y(x), process, PurpleLine_20170920_data)
 
-print(name)
+# Affirming success
+print(result)
 
-
+# Printing successful data acquisition... String to text file
+with open('/Users/amganier/Documents/Predict452/PurpleLine_20170920.txt', 'w', encoding='utf-8') as f:
+    f.write(result)
 
 # -----------------------------------------------------------
 # demo of parsing HTML with beautiful soup instead of lxml
 # -----------------------------------------------------------
 
-# Assignment 1 Added Value: Added explicitly specified parser to avoid issues in running script on other systems / virtual environments. Read following before making choice:https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-a-parser"
-my_soup = BeautifulSoup(web_page_text, "lxml")
+beautiful_email = PurpleLine_20170920_data.text
+my_soup = BeautifulSoup(beautiful_email, "lxml")
 # note that my_soup is a BeautifulSoup object
 print(type(my_soup))
 
@@ -64,8 +57,8 @@ print(type(my_soup))
 # using a comprehension approach
 [x.extract() for x in my_soup.find_all('script')] 
 
-# Assignment 1 Added Value: gather all the text from within div tag with id of "ContentMiddle"
-# Citation: Achieved with help from https://stackoverflow.com/questions/25614702/get-contents-of-div-by-id-with-beautifulsoup
+# Gathers all the text from within div tag with id of "ContentMiddle"
+# Citation: https://stackoverflow.com/questions/25614702/get-contents-of-div-by-id-with-beautifulsoup
 # using another list comprehension 
 email_content = [x.text for x in my_soup.find_all('div', id='ContentMiddle')]
 
@@ -74,6 +67,7 @@ print(email_content)  # note absense of all-blank strings
 print(len(email_content))  
 print(type(email_content))  # a list of character strings
 
-# there are carriage return, line feed characters, and spaces
-# to delete from the text... but we have extracted the essential 
-# content of the page for further analysis
+
+# Printing successful data acquisition to text file Using writelines since type is list
+with open('/Users/amganier/Documents/Predict452/PurpleLine_20170920_soup.txt', 'w', encoding='utf-8') as f:
+    f.writelines(email_content)
