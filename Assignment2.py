@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[3]:
+# In[1]:
 
 
 # Social Media Data Collection (Python)
@@ -11,6 +11,7 @@ from __future__ import division, print_function
 
 import twitter  # work with Twitter APIs
 import json  # methods for working with JSON data
+import twitter_text #Extracting Tweet Entities from Arbitrary Text
 
 windows_system = False  # set to True if this is a Windows computer
 if windows_system:
@@ -40,10 +41,10 @@ partial_text_filename_t = 'technolutions_tweet_file.txt'
 # twitter_api = oauth_login()    
 def oauth_login():
 
-    CONSUMER_KEY = 'void'
-    CONSUMER_SECRET = 'void'
-    OAUTH_TOKEN = 'void'
-    OAUTH_TOKEN_SECRET = 'void'
+    CONSUMER_KEY = 'eudrgAVzTZkc90mMOfoR3OfEd'
+    CONSUMER_SECRET = 'pzJBUU3EuwnvHG08J2v9ZFxZzp6mpBBLMLw9uITwC475jE6lmV'
+    OAUTH_TOKEN = '862669440990793728-0hEENVHLOSv3gLWN193YbI5IR8H0CuR'
+    OAUTH_TOKEN_SECRET = 'xsGdZTdBw38YMBNjeKxiGjyHiQRuGioRTEbsXZKXF3EGk'
     
     auth = twitter.oauth.OAuth(OAUTH_TOKEN, OAUTH_TOKEN_SECRET,
                                CONSUMER_KEY, CONSUMER_SECRET)
@@ -97,13 +98,13 @@ twitter_api = oauth_login()
 print(twitter_api)  # verify the connection
 
 q = "@Technolutions"  # search string
-results = twitter_search(twitter_api, q, max_results = 200)  # limit to 200 users
+results_twt = twitter_search(twitter_api, q, max_results = 200)  # limit to 200 users
 
 # examping the results object... should be list of dictionary objects for competitor tweets call
 
-print('\n\ntype of results:', type(results)) 
-print('\nnum type(statuses)ber of results:', len(results)) 
-print('\ntype of results elements:', type(results[0]))  
+print('\n\ntype of results:', type(results_twt)) 
+print('\nnum type(statuses)ber of results:', len(results_twt)) 
+print('\ntype of results elements:', type(results_twt[0]))  
 
 # -------------------------------------
 # working with JSON files composed of multiple JSON objects
@@ -112,10 +113,10 @@ print('\ntype of results elements:', type(results[0]))
 # is written as a JSON object on a separate line
 item_count = 0  # initialize count of objects dumped to file
 with open(json_filename_t, 'w') as outfile:
-    for dict_item in results:
+    for dict_item in results_twt:
         json.dump(dict_item, outfile, encoding = 'utf-8')
         item_count = item_count + 1
-        if item_count < len(results):
+        if item_count < len(results_twt):
              outfile.write(line_termination)  # new line between items
                      
 # -------------------------------------
@@ -126,12 +127,12 @@ with open(json_filename_t, 'w') as outfile:
 # is written as group of lines printed with indentation
 item_count = 0  # initialize count of objects dumped to file
 with open(full_text_filename_t, 'w') as outfile:
-    for dict_item in results:
+    for dict_item in results_twt:
         outfile.write('Item index: ' + str(item_count) +             ' -----------------------------------------' + line_termination)
         # indent for pretty printing
         outfile.write(json.dumps(dict_item, indent = 4))  
         item_count = item_count + 1
-        if item_count < len(results):
+        if item_count < len(results_twt):
              outfile.write(line_termination)  # new line between items  
         
 # -------------------------------------
@@ -142,14 +143,14 @@ with open(full_text_filename_t, 'w') as outfile:
 # is written to a separate line in the output text file
 item_count = 0  # initialize count of objects dumped to file
 with open(partial_text_filename_t, 'w') as outfile:
-    for dict_item in results:
+    for dict_item in results_twt:
         outfile.write(json.dumps(dict_item['text']))
         item_count = item_count + 1
-        if item_count < len(results):
-             outfile.write(line_termination)  # new line between text items  
+        if item_count < len(results_twt):
+             outfile.write(line_termination)  # new line between text items 
 
 
-# In[4]:
+# In[2]:
 
 
 # name used for JSON file storage of clients or prospects twitter users      
@@ -181,12 +182,12 @@ twitter_api = oauth_login()
 print(twitter_api)  # verify the connection
 
 q = "official%20university"  # search string
-results = twitter_user_search(twitter_api, q, max_results = 200)  # limit to 200 users
+results_u = twitter_user_search(twitter_api, q, max_results = 200)  # limit to 200 users
 
 # examping the results object... should be list of dictionary objects for client/prospect users call
-print('\n\ntype of results:', type(results)) 
-print('\nnum type(user_search_results)ber of results:', len(results)) 
-print('\ntype of results elements:', type(results[0]))  
+print('\n\ntype of results:', type(results_u)) 
+print('\nnum type(user_search_results)ber of results:', len(results_u)) 
+print('\ntype of results elements:', type(results_u[0]))  
 
 # -------------------------------------
 # working with JSON files composed of multiple JSON objects
@@ -195,10 +196,10 @@ print('\ntype of results elements:', type(results[0]))
 # is written as a JSON object on a separate line
 item_count = 0  # initialize count of objects dumped to file
 with open(json_filename_u, 'w') as outfile:
-    for dict_item in results:
+    for dict_item in results_u:
         json.dump(dict_item, outfile, encoding = 'utf-8')
         item_count = item_count + 1
-        if item_count < len(results):
+        if item_count < len(results_u):
              outfile.write(line_termination)  # new line between items
                      
 # -------------------------------------
@@ -209,12 +210,12 @@ with open(json_filename_u, 'w') as outfile:
 # is written as group of lines printed with indentation
 item_count = 0  # initialize count of objects dumped to file
 with open(full_text_filename_u, 'w') as outfile:
-    for dict_item in results:
+    for dict_item in results_u:
         outfile.write('Item index: ' + str(item_count) +             ' -----------------------------------------' + line_termination)
         # indent for pretty printing
         outfile.write(json.dumps(dict_item, indent = 4))  
         item_count = item_count + 1
-        if item_count < len(results):
+        if item_count < len(results_u):
              outfile.write(line_termination)  # new line between items  
         
 # -------------------------------------
@@ -223,11 +224,35 @@ with open(full_text_filename_u, 'w') as outfile:
 # results is a list of dictionary items obtained from twitter
 # these functions assume that the text of each tweet 
 # is written to a separate line in the output text file
-item_count = 0  # initialize count of objects dumped to file
-with open(partial_text_filename_u, 'w') as outfile:
-    for dict_item in results:
-        outfile.write(json.dumps(dict_item['text']))
-        item_count = item_count + 1
-        if item_count < len(results):
-             outfile.write(line_termination)  # new line between text items  
+#item_count = 0  # initialize count of objects dumped to file
+#with open(partial_text_filename_u, 'w') as outfile:
+    #for dict_item in results_u:
+        #outfile.write(json.dumps(item['text']))
+        #item_count = item_count + 1
+        #if item_count < len(results_u):
+             #outfile.write(line_termination)  # new line between text items
+
+
+# In[11]:
+
+
+#Using extract 
+# Citation: Mining the Social Web, 2nd Edition 9.2 Tweet Entities from Arbitrary Text
+users_extract = twitter_text.Extractor(results_u)
+ue= ("Screen Names:", users_extract.extract_mentioned_screen_names())
+ue_list = list(ue)
+type(ue_list)
+
+competition_extract = twitter_text.Extractor(results_twt)
+
+ce = ("Screen Names:", competition_extract.extract_mentioned_screen_names())
+ce_list = list(ce)
+type(ce_list)
+
+# FAIL: Looking to identify common values between lists
+# Citation: https://stackoverflow.com/questions/28061223/python-how-to-find-common-values-in-three-lists
+# set(ce_list).intersection(ue_list)
+
+print(ue_list)
+print(ce_list)
 
