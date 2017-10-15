@@ -1,0 +1,367 @@
+[
+    {
+        "id": 1583819378,
+        "id_str": "1583819378",
+        "name": "Marshall Football",
+        "screen_name": "HerdFB",
+        "location": "Huntington, W.Va.",
+        "description": "The official account of Marshall Football",
+        "url": "https://t.co/VoQH6zsmu6",
+        "entities": {
+            "url": {
+                "urls": [
+                    {
+                        "url": "https://t.co/VoQH6zsmu6",
+                        "expanded_url": "http://www.HerdZone.com",
+                        "display_url": "HerdZone.com",
+                        "indices": [
+                            0,
+                            23
+                        ]
+                    }
+                ]
+            },
+            "description": {
+                "urls": []
+            }
+        },
+        "protected": false,
+        "followers_count": 23729,
+        "friends_count": 342,
+        "listed_count": 185,
+        "created_at": "Wed Jul 10 19:12:18 +0000 2013",
+        "favourites_count": 855,
+        "utc_offset": null,
+        "time_zone": null,
+        "geo_enabled": true,
+        "verified": true,
+        "statuses_count": 13713,
+        "lang": "en",
+        "status": {
+            "created_at": "Sun Oct 15 05:57:23 +0000 2017",
+            "id": 919442055734136832,
+            "id_str": "919442055734136832",
+            "text": "RT @WBESBrandonLowe: Let us know if you made it up to @HerdFB game and your thoughts on the game! Text the show 304-405-6301. We will read…",
+            "truncated": false,
+            "entities": {
+                "hashtags": [],
+                "symbols": [],
+                "user_mentions": [
+                    {
+                        "screen_name": "WBESBrandonLowe",
+                        "name": "Brandon Lowe Show",
+                        "id": 4307192952,
+                        "id_str": "4307192952",
+                        "indices": [
+                            3,
+                            19
+                        ]
+                    },
+                    {
+                        "screen_name": "HerdFB",
+                        "name": "Marshall Football",
+                        "id": 1583819378,
+                        "id_str": "1583819378",
+                        "indices": [
+                            54,
+                            61
+                        ]
+                    }
+                ],
+                "urls": []
+            },
+            "source": "<a href=\"http://www.handmark.com\" rel=\"nofollow\">TweetCaster for iOS</a>",
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "in_reply_to_screen_name": null,
+            "geo": null,
+            "coordinates": null,
+            "place": null,
+            "contributors": null,
+            "retweeted_status": {
+                "created_at": "Sun Oct 15 04:30:01 +0000 2017",
+                "id": 919420069284892672,
+                "id_str": "919420069284892672",
+                "text": "Let us know if you made it up to @HerdFB game and your thoughts on the game! Text the show 304-405-6301. We will read them on the air Monday",
+                "truncated": false,
+                "entities": {
+                    "hashtags": [],
+                    "symbols": [],
+                    "user_mentions": [
+                        {
+                            "screen_name": "HerdFB",
+                            "name": "Marshall Football",
+                            "id": 1583819378,
+                            "id_str": "1583819378",
+                            "indices": [
+                                33,
+                                40
+                            ]
+                        }
+                    ],
+                    "urls": []
+                },
+                "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+                "in_reply_to_status_id": null,
+                "in_reply_to_status_id_str": null,
+                "in_reply_to_user_id": null,
+                "in_reply_to_user_id_str": null,
+                "in_reply_to_screen_name": null,
+                "geo": null,
+                "coordinates": null,
+                "place": null,
+                "contributors": null,
+                "is_quote_status": false,
+                "retweet_count": 1,
+                "favorite_count": 0,
+                "favorited": false,
+                "retweeted": false,
+                "lang": "en"
+            },
+            "is_quote_status": false,
+            "retweet_count": 1,
+            "favorite_count": 0,
+            "favorited": false,
+            "retweeted": false,
+            "lang": "en"
+        },
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "C0DEED",
+        "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/378800000074232723/f051ffac76ac00da1c5f0acdee335e71.jpeg",
+        "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/378800000074232723/f051ffac76ac00da1c5f0acdee335e71.jpeg",
+        "profile_background_tile": true,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/892085085968773120/P3EukNqk_normal.jpg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/892085085968773120/P3EukNqk_normal.jpg",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/1583819378/1500576747",
+        "profile_link_color": "0084B4",
+        "profile_sidebar_border_color": "FFFFFF",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "has_extended_profile": false,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false,
+        "translator_type": "none"
+    },
+    {
+        "id": 1910771,
+        "id_str": "1910771",
+        "name": "UVA",
+        "screen_name": "UVA",
+        "location": "Charlottesville, VA",
+        "description": "Thomas Jefferson founded the University of Virginia in 1819. Official Twitter feed by the Office of University Communications.",
+        "url": "http://t.co/lyzeA6qdil",
+        "entities": {
+            "url": {
+                "urls": [
+                    {
+                        "url": "http://t.co/lyzeA6qdil",
+                        "expanded_url": "http://www.virginia.edu",
+                        "display_url": "virginia.edu",
+                        "indices": [
+                            0,
+                            22
+                        ]
+                    }
+                ]
+            },
+            "description": {
+                "urls": []
+            }
+        },
+        "protected": false,
+        "followers_count": 73846,
+        "friends_count": 1556,
+        "listed_count": 1040,
+        "created_at": "Thu Mar 22 17:26:46 +0000 2007",
+        "favourites_count": 5285,
+        "utc_offset": -14400,
+        "time_zone": "Eastern Time (US & Canada)",
+        "geo_enabled": false,
+        "verified": true,
+        "statuses_count": 19350,
+        "lang": "en",
+        "status": {
+            "created_at": "Sun Oct 15 02:05:03 +0000 2017",
+            "id": 919383590592532480,
+            "id_str": "919383590592532480",
+            "text": "Congratulations Kate Orff! https://t.co/M0UjQSe7gO #MacFellow",
+            "truncated": false,
+            "entities": {
+                "hashtags": [
+                    {
+                        "text": "MacFellow",
+                        "indices": [
+                            51,
+                            61
+                        ]
+                    }
+                ],
+                "symbols": [],
+                "user_mentions": [],
+                "urls": [
+                    {
+                        "url": "https://t.co/M0UjQSe7gO",
+                        "expanded_url": "http://ow.ly/ZJv330fR7qH",
+                        "display_url": "ow.ly/ZJv330fR7qH",
+                        "indices": [
+                            27,
+                            50
+                        ]
+                    }
+                ]
+            },
+            "source": "<a href=\"http://www.hootsuite.com\" rel=\"nofollow\">Hootsuite</a>",
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "in_reply_to_screen_name": null,
+            "geo": null,
+            "coordinates": null,
+            "place": null,
+            "contributors": null,
+            "is_quote_status": false,
+            "retweet_count": 1,
+            "favorite_count": 9,
+            "favorited": false,
+            "retweeted": false,
+            "possibly_sensitive": false,
+            "lang": "en"
+        },
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "0B1D77",
+        "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/6071365/bg2.jpg",
+        "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/6071365/bg2.jpg",
+        "profile_background_tile": false,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/877556953148424192/AmSe7JZk_normal.jpg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/877556953148424192/AmSe7JZk_normal.jpg",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/1910771/1507662477",
+        "profile_link_color": "004490",
+        "profile_sidebar_border_color": "234A90",
+        "profile_sidebar_fill_color": "6488D1",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "has_extended_profile": false,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false,
+        "translator_type": "none"
+    },
+    {
+        "id": 82539398,
+        "id_str": "82539398",
+        "name": "West Georgia Wolves",
+        "screen_name": "UWGAthletics",
+        "location": "Carrollton, GA",
+        "description": "The official Twitter account of the University of West Georgia Athletic Department.",
+        "url": "https://t.co/oXUU4gMc4S",
+        "entities": {
+            "url": {
+                "urls": [
+                    {
+                        "url": "https://t.co/oXUU4gMc4S",
+                        "expanded_url": "http://www.uwgsports.com",
+                        "display_url": "uwgsports.com",
+                        "indices": [
+                            0,
+                            23
+                        ]
+                    }
+                ]
+            },
+            "description": {
+                "urls": []
+            }
+        },
+        "protected": false,
+        "followers_count": 11274,
+        "friends_count": 469,
+        "listed_count": 82,
+        "created_at": "Thu Oct 15 04:32:20 +0000 2009",
+        "favourites_count": 2899,
+        "utc_offset": -14400,
+        "time_zone": "Eastern Time (US & Canada)",
+        "geo_enabled": true,
+        "verified": false,
+        "statuses_count": 27573,
+        "lang": "en",
+        "status": {
+            "created_at": "Sun Oct 15 00:12:14 +0000 2017",
+            "id": 919355196689604608,
+            "id_str": "919355196689604608",
+            "text": "FB | Final: West Alabama 34, West Georgia 31. \n\n#UWGvUWA #WolvesFB",
+            "truncated": false,
+            "entities": {
+                "hashtags": [
+                    {
+                        "text": "UWGvUWA",
+                        "indices": [
+                            48,
+                            56
+                        ]
+                    },
+                    {
+                        "text": "WolvesFB",
+                        "indices": [
+                            57,
+                            66
+                        ]
+                    }
+                ],
+                "symbols": [],
+                "user_mentions": [],
+                "urls": []
+            },
+            "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "in_reply_to_screen_name": null,
+            "geo": null,
+            "coordinates": null,
+            "place": null,
+            "contributors": null,
+            "is_quote_status": false,
+            "retweet_count": 13,
+            "favorite_count": 17,
+            "favorited": false,
+            "retweeted": false,
+            "lang": "en"
+        },
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "13216E",
+        "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/378800000152382519/eaONDL0E.jpeg",
+        "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/378800000152382519/eaONDL0E.jpeg",
+        "profile_background_tile": false,
+        "profile_image_url": "http://pbs.twimg.com/profile_images/822325772505362433/3MnPEGHR_normal.jpg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/822325772505362433/3MnPEGHR_normal.jpg",
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/82539398/1484892931",
+        "profile_link_color": "FF0000",
+        "profile_sidebar_border_color": "FFFFFF",
+        "profile_sidebar_fill_color": "DDFFCD",
+        "profile_text_color": "FF0000",
+        "profile_use_background_image": true,
+        "has_extended_profile": false,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false,
+        "translator_type": "none"
+    }
+]
