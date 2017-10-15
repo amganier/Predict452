@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[4]:
+# In[3]:
 
 
 # Social Media Data Collection (Python)
@@ -19,22 +19,14 @@ if (windows_system == False):
     line_termination = '\n' # Unix/Linus/Mac line termination
     
 # name used for JSON file storage of competitor Tweets        
-json_filename_t = 'technolutions_tweet_file.json' 
-
-# name used for JSON file storage of clients or prospects twitter users      
-json_filename_u = 'university_users_file.json'  
+json_filename_t = 'technolutions_tweet_file.json'  
 
 # name for text file for review of competitor tweet results
-full_text_filename_t = 'technolutions_tweet_file.txt'  
-
-# name for text file for review of clients or prospects twitter users results
-full_text_filename_u = 'university_users_review_file.txt' 
+full_text_filename_t = 'technolutions_tweet_review_file.txt'  
 
 # name for text from competitor tweets
 partial_text_filename_t = 'technolutions_tweet_file.txt'  
 
-# name for text from client or prospect users
-partial_text_filename_u = 'university_users_text_file.txt'  
 
 # See Russell (2014) and Twitter site for documentation
 # https://dev.twitter.com/rest/public
@@ -60,14 +52,6 @@ def oauth_login():
     return twitter_api    
 # -------------------------------------
 # searching the REST API a la Russell (2014) section 9.4
-def twitter_user_search(twitter_api, q, max_results=200, **kw):
-    # See https://dev.twitter.com/docs/api/1.1/get/search/tweets and 
-    # https://dev.twitter.com/docs/using-search for details on advanced 
-    # search criteria that may be useful for keyword arguments  
-    
-    # See https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-search   
-    user_search_results = twitter_api.users.search(q=q, count=1000, **kw)
-    return user_search_results
     
 def twitter_search(twitter_api, q, max_results=200, **kw):
     # See https://dev.twitter.com/docs/api/1.1/get/search/tweets and 
@@ -112,24 +96,14 @@ def twitter_search(twitter_api, q, max_results=200, **kw):
 twitter_api = oauth_login()   
 print(twitter_api)  # verify the connection
 
-q = "official%20university"  # search string
-results = twitter_user_search(twitter_api, q, max_results = 200)  # limit to 200 users
-
-# examping the results object... should be list of dictionary objects for client/prospect users call
-print('\n\ntype of results:', type(results)) 
-print('\nnum type(user_search_results)ber of results:', len(results)) 
-print('\ntype of results elements:', type(results[0]))  
+q = "@Technolutions"  # search string
+results = twitter_search(twitter_api, q, max_results = 200)  # limit to 200 users
 
 # examping the results object... should be list of dictionary objects for competitor tweets call
 
 print('\n\ntype of results:', type(results)) 
 print('\nnum type(statuses)ber of results:', len(results)) 
 print('\ntype of results elements:', type(results[0]))  
-
-
-# In[5]:
-
-
 
 # -------------------------------------
 # working with JSON files composed of multiple JSON objects
@@ -173,6 +147,46 @@ with open(partial_text_filename_t, 'w') as outfile:
         item_count = item_count + 1
         if item_count < len(results):
              outfile.write(line_termination)  # new line between text items  
+
+
+# In[4]:
+
+
+# name used for JSON file storage of clients or prospects twitter users      
+json_filename_u = 'university_users_file.json'  
+
+# name for text file for review of clients or prospects twitter users results
+full_text_filename_u = 'university_users_review_file.txt'   
+
+# name for text from client or prospect users
+partial_text_filename_u = 'university_users_text_file.txt'  
+
+# See Russell (2014) and Twitter site for documentation
+# https://dev.twitter.com/rest/public
+# Go to http://twitter.com/apps/new to provide an application name
+# to Twitter and to obtain OAuth credentials to obtain API data
+
+# -------------------------------------
+# Changing api a la Russell (2014) section 9.4 with get/users/search
+def twitter_user_search(twitter_api, q, max_results=200, **kw):
+    # See https://dev.twitter.com/docs/api/1.1/get/search/tweets and 
+    # https://dev.twitter.com/docs/using-search for details on advanced 
+    # search criteria that may be useful for keyword arguments  
+    
+    user_search_results = twitter_api.users.search(q=q, count=1000, **kw)
+    return user_search_results
+
+# use the predefined functions from Russell to conduct the search
+twitter_api = oauth_login()   
+print(twitter_api)  # verify the connection
+
+q = "official%20university"  # search string
+results = twitter_user_search(twitter_api, q, max_results = 200)  # limit to 200 users
+
+# examping the results object... should be list of dictionary objects for client/prospect users call
+print('\n\ntype of results:', type(results)) 
+print('\nnum type(user_search_results)ber of results:', len(results)) 
+print('\ntype of results elements:', type(results[0]))  
 
 # -------------------------------------
 # working with JSON files composed of multiple JSON objects
