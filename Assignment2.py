@@ -48,10 +48,10 @@ partial_text_filename_u = 'university_users_text_file.txt'
 # twitter_api = oauth_login()    
 def oauth_login():
 
-    CONSUMER_KEY = 'OUeSQiDBOoiosaf7g9uECkr2F'
-    CONSUMER_SECRET = 'WG6nIqPns9PnpMP8MVbKQ3uZRXwb48fMX6ywkmPqMn8cvZx9j2'
-    OAUTH_TOKEN = '862669440990793728-uoZPYdduf5hhrpd47QFrzSLFyyEpSN2'
-    OAUTH_TOKEN_SECRET = 'aCg8tZBXE9PIpUrTtyKmtNPM5ZdcU6NHZN0RYCnImpOuV'
+    CONSUMER_KEY = 'void'
+    CONSUMER_SECRET = 'void'
+    OAUTH_TOKEN = 'void'
+    OAUTH_TOKEN_SECRET = 'void'
     
     auth = twitter.oauth.OAuth(OAUTH_TOKEN, OAUTH_TOKEN_SECRET,
                                CONSUMER_KEY, CONSUMER_SECRET)
