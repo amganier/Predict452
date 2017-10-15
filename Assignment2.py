@@ -1,158 +1,105 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": 7,
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "<twitter.api.Twitter object at 0x1030d03d0>\n"
-     ]
-    },
-    {
-     "ename": "TypeError",
-     "evalue": "list indices must be integers, not str",
-     "output_type": "error",
-     "traceback": [
-      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
-      "\u001b[0;31mTypeError\u001b[0m                                 Traceback (most recent call last)",
-      "\u001b[0;32m<ipython-input-7-3b9bb94cdba0>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m()\u001b[0m\n\u001b[1;32m     91\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     92\u001b[0m \u001b[0mq\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;34m\"official%20university\"\u001b[0m  \u001b[0;31m# search string\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 93\u001b[0;31m \u001b[0mresults\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mtwitter_search\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mtwitter_api\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mq\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mmax_results\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;36m20\u001b[0m\u001b[0;34m)\u001b[0m  \u001b[0;31m# limit to 20 users\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     94\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     95\u001b[0m \u001b[0;31m# examping the results object... should be list of dictionary objects\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
-      "\u001b[0;32m<ipython-input-7-3b9bb94cdba0>\u001b[0m in \u001b[0;36mtwitter_search\u001b[0;34m(twitter_api, q, max_results, **kw)\u001b[0m\n\u001b[1;32m     54\u001b[0m     \u001b[0msearch_results\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mtwitter_api\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0musers\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msearch\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mq\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mq\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mcount\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;36m10\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkw\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     55\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 56\u001b[0;31m     \u001b[0mstatuses\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0msearch_results\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m'statuses'\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     57\u001b[0m     \u001b[0mtype\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mstatuses\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     58\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
-      "\u001b[0;31mTypeError\u001b[0m: list indices must be integers, not str"
-     ]
-    }
-   ],
-   "source": [
-    "# Social Media Data Collection (Python)\n",
-    "\n",
-    "# prepare for Python version 3x features and functions\n",
-    "from __future__ import division, print_function \n",
-    "\n",
-    "import twitter  # work with Twitter APIs\n",
-    "import json  # methods for working with JSON data\n",
-    "\n",
-    "windows_system = False  # set to True if this is a Windows computer\n",
-    "if windows_system:\n",
-    "    line_termination = '\\r\\n' # Windows line termination\n",
-    "if (windows_system == False):\n",
-    "    line_termination = '\\n' # Unix/Linus/Mac line termination\n",
-    "    \n",
-    "# name used for JSON file storage        \n",
-    "json_filename = 'my_tweet_file.json'  \n",
-    "\n",
-    "# name for text file for review of results\n",
-    "full_text_filename = 'my_tweet_review_file.txt'  \n",
-    "\n",
-    "# name for text from tweets\n",
-    "partial_text_filename = 'my_tweet_text_file.txt'  \n",
-    "\n",
-    "# See Russell (2014) and Twitter site for documentation\n",
-    "# https://dev.twitter.com/rest/public\n",
-    "# Go to http://twitter.com/apps/new to provide an application name\n",
-    "# to Twitter and to obtain OAuth credentials to obtain API data\n",
-    "\n",
-    "# -------------------------------------\n",
-    "# Twitter authorization a la Russell (2014) section 9.1\n",
-    "# Insert credentials in place of the \"blah blah blah\" strings \n",
-    "# Sample usage of oauth() function\n",
-    "# twitter_api = oauth_login()    \n",
-    "def oauth_login():\n",
-    "\n",
-    "    CONSUMER_KEY = 'void'\n",
-    "    CONSUMER_SECRET = 'void'\n",
-    "    OAUTH_TOKEN = 'void'\n",
-    "    OAUTH_TOKEN_SECRET = 'void'\n",
-    "    \n",
-    "    auth = twitter.oauth.OAuth(OAUTH_TOKEN, OAUTH_TOKEN_SECRET,\n",
-    "                               CONSUMER_KEY, CONSUMER_SECRET)\n",
-    "    \n",
-    "    twitter_api = twitter.Twitter(auth=auth)\n",
-    "    return twitter_api    \n",
-    "# -------------------------------------\n",
-    "# searching the REST API a la Russell (2014) section 9.4\n",
-    "def twitter_search(twitter_api, q, max_results=1000, **kw):\n",
-    "    # See https://dev.twitter.com/docs/api/1.1/get/search/tweets and \n",
-    "    # https://dev.twitter.com/docs/using-search for details on advanced \n",
-    "    # search criteria that may be useful for keyword arguments  \n",
-    "    \n",
-    "    # See https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-search   \n",
-    "    search_results = twitter_api.users.search(q=q, count=10, **kw)\n",
-    "    \n",
-    "    statuses = search_results['statuses']\n",
-    "    type(statuses)\n",
-    "    \n",
-    "    # Iterate through batches of results by following the cursor until we\n",
-    "    # reach the desired number of results, keeping in mind that OAuth users\n",
-    "    # can \"only\" make 180 search queries per 15-minute interval. See\n",
-    "    # https://dev.twitter.com/docs/rate-limiting/1.1/limits\n",
-    "    # for details. A reasonable number of results is ~1000, although\n",
-    "    # that number of results may not exist for all queries.\n",
-    "    \n",
-    "    # Enforce a reasonable limit\n",
-    "    max_results = min(1000, max_results)\n",
-    "    \n",
-    "    for _ in range(10): # 10*100 = 1000\n",
-    "        try:\n",
-    "            next_results = search_results['search_metadata']['next_results']\n",
-    "        except KeyError, e:\n",
-    "            break\n",
-    "            \n",
-    "        # Create a dictionary from next_results, which has the following form:\n",
-    "        kwargs = dict([ kv.split('=') \n",
-    "                        for kv in next_results[1:].split(\"&\") ])\n",
-    "        \n",
-    "        search_results = twitter_api.users.search(**kwargs)\n",
-    "        statuses += search_results['statuses']\n",
-    "        \n",
-    "        if len(statuses) > max_results: \n",
-    "            break\n",
-    "            \n",
-    "    return statuses\n",
-    "\n",
-    "# use the predefined functions from Russell to conduct the search\n",
-    "\n",
-    "twitter_api = oauth_login()   \n",
-    "print(twitter_api)  # verify the connection\n",
-    "\n",
-    "q = \"official%20university\"  # search string\n",
-    "results = twitter_search(twitter_api, q, max_results = 20)  # limit to 20 users\n",
-    "\n",
-    "# examping the results object... should be list of dictionary objects\n",
-    "print('\\n\\ntype of results:', type(results)) \n",
-    "print('\\nnum type(statuses)ber of results:', len(results)) \n",
-    "print('\\ntype of results elements:', type(results[0]))"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 2",
-   "language": "python",
-   "name": "python2"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 2
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython2",
-   "version": "2.7.13"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 2
-}
+
+# coding: utf-8
+
+# In[7]:
+
+
+# Social Media Data Collection (Python)
+
+# prepare for Python version 3x features and functions
+from __future__ import division, print_function 
+
+import twitter  # work with Twitter APIs
+import json  # methods for working with JSON data
+
+windows_system = False  # set to True if this is a Windows computer
+if windows_system:
+    line_termination = '\r\n' # Windows line termination
+if (windows_system == False):
+    line_termination = '\n' # Unix/Linus/Mac line termination
+    
+# name used for JSON file storage        
+json_filename = 'my_tweet_file.json'  
+
+# name for text file for review of results
+full_text_filename = 'my_tweet_review_file.txt'  
+
+# name for text from tweets
+partial_text_filename = 'my_tweet_text_file.txt'  
+
+# See Russell (2014) and Twitter site for documentation
+# https://dev.twitter.com/rest/public
+# Go to http://twitter.com/apps/new to provide an application name
+# to Twitter and to obtain OAuth credentials to obtain API data
+
+# -------------------------------------
+# Twitter authorization a la Russell (2014) section 9.1
+# Insert credentials in place of the "blah blah blah" strings 
+# Sample usage of oauth() function
+# twitter_api = oauth_login()    
+def oauth_login():
+
+    CONSUMER_KEY = 'void'
+    CONSUMER_SECRET = 'void'
+    OAUTH_TOKEN = 'void'
+    OAUTH_TOKEN_SECRET = 'void'
+    
+    auth = twitter.oauth.OAuth(OAUTH_TOKEN, OAUTH_TOKEN_SECRET,
+                               CONSUMER_KEY, CONSUMER_SECRET)
+    
+    twitter_api = twitter.Twitter(auth=auth)
+    return twitter_api    
+# -------------------------------------
+# searching the REST API a la Russell (2014) section 9.4
+def twitter_search(twitter_api, q, max_results=1000, **kw):
+    # See https://dev.twitter.com/docs/api/1.1/get/search/tweets and 
+    # https://dev.twitter.com/docs/using-search for details on advanced 
+    # search criteria that may be useful for keyword arguments  
+    
+    # See https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference/get-users-search   
+    search_results = twitter_api.users.search(q=q, count=10, **kw)
+    
+    statuses = search_results['statuses']
+    type(statuses)
+    
+    # Iterate through batches of results by following the cursor until we
+    # reach the desired number of results, keeping in mind that OAuth users
+    # can "only" make 180 search queries per 15-minute interval. See
+    # https://dev.twitter.com/docs/rate-limiting/1.1/limits
+    # for details. A reasonable number of results is ~1000, although
+    # that number of results may not exist for all queries.
+    
+    # Enforce a reasonable limit
+    max_results = min(1000, max_results)
+    
+    for _ in range(10): # 10*100 = 1000
+        try:
+            next_results = search_results['search_metadata']['next_results']
+        except KeyError, e:
+            break
+            
+        # Create a dictionary from next_results, which has the following form:
+        kwargs = dict([ kv.split('=') 
+                        for kv in next_results[1:].split("&") ])
+        
+        search_results = twitter_api.users.search(**kwargs)
+        statuses += search_results['statuses']
+        
+        if len(statuses) > max_results: 
+            break
+            
+    return statuses
+
+# use the predefined functions from Russell to conduct the search
+
+twitter_api = oauth_login()   
+print(twitter_api)  # verify the connection
+
+q = "official%20university"  # search string
+results = twitter_search(twitter_api, q, max_results = 20)  # limit to 20 users
+
+# examping the results object... should be list of dictionary objects
+print('\n\ntype of results:', type(results)) 
+print('\nnum type(statuses)ber of results:', len(results)) 
+print('\ntype of results elements:', type(results[0]))
+
