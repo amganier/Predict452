@@ -41,10 +41,10 @@ partial_text_filename_t = 'technolutions_tweet_file.txt'
 # twitter_api = oauth_login()    
 def oauth_login():
 
-    CONSUMER_KEY = 'eudrgAVzTZkc90mMOfoR3OfEd'
-    CONSUMER_SECRET = 'pzJBUU3EuwnvHG08J2v9ZFxZzp6mpBBLMLw9uITwC475jE6lmV'
-    OAUTH_TOKEN = '862669440990793728-0hEENVHLOSv3gLWN193YbI5IR8H0CuR'
-    OAUTH_TOKEN_SECRET = 'xsGdZTdBw38YMBNjeKxiGjyHiQRuGioRTEbsXZKXF3EGk'
+    CONSUMER_KEY = 'blank'
+    CONSUMER_SECRET = 'blank'
+    OAUTH_TOKEN = 'blank'
+    OAUTH_TOKEN_SECRET = 'blank'
     
     auth = twitter.oauth.OAuth(OAUTH_TOKEN, OAUTH_TOKEN_SECRET,
                                CONSUMER_KEY, CONSUMER_SECRET)
